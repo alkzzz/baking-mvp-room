@@ -1,11 +1,11 @@
 package com.example.administrator.bakingapp.recipes;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.administrator.bakingapp.R;
+import com.example.administrator.bakingapp.data.Ingredient;
 import com.example.administrator.bakingapp.data.Recipe;
 import com.example.administrator.bakingapp.data.source.RecipesDataSource;
 import com.example.administrator.bakingapp.data.source.remote.RecipesRemoteDataSource;
@@ -25,6 +25,9 @@ public class RecipesActivity extends AppCompatActivity {
             public void onRecipesLoaded(List<Recipe> recipes) {
                 for (Recipe recipe: recipes) {
                     Log.d("coba", recipe.getName());
+                    for (Ingredient ing: recipe.getIngredients()) {
+                        Log.d("coba", ing.getIngredient());
+                    }
                 }
             }
 

@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 @Entity(foreignKeys = @ForeignKey(entity = Recipe.class, parentColumns = "id", childColumns = "recipe_id"))
-class Ingredient implements Parcelable {
+public class Ingredient implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -16,7 +16,7 @@ class Ingredient implements Parcelable {
     @ColumnInfo(name = "recipe_id")
     private int recipeId;
 
-    private int quantity;
+    private float quantity;
     private String measure;
     private String ingredient;
 
@@ -36,11 +36,11 @@ class Ingredient implements Parcelable {
         this.recipeId = recipeId;
     }
 
-    public int getQuantity() {
+    public float getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
 
@@ -69,7 +69,7 @@ class Ingredient implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
         dest.writeInt(this.recipeId);
-        dest.writeInt(this.quantity);
+        dest.writeFloat(this.quantity);
         dest.writeString(this.measure);
         dest.writeString(this.ingredient);
     }
@@ -80,7 +80,7 @@ class Ingredient implements Parcelable {
     protected Ingredient(Parcel in) {
         this.id = in.readInt();
         this.recipeId = in.readInt();
-        this.quantity = in.readInt();
+        this.quantity = in.readFloat();
         this.measure = in.readString();
         this.ingredient = in.readString();
     }
